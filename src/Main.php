@@ -4,7 +4,7 @@ namespace FieldPress;
 
 class Main {
 	public function init() {
-		$this->assets->init();
+		// $this->assets->init();
 		$this->roles->init();
 	}
 
