@@ -1,0 +1,64 @@
+{
+	"name": "field-press",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build-js": "wp-scripts build",
+		"build-scss": "sass ./scss:./build/css",
+		"start-js": "wp-scripts start",
+		"start-scss": "sass ./scss:./build/css --watch",
+		"start-types": "tsc -b --watch",
+		"build-types": "tsc -b",
+		"build": "concurrently 'npm:build-*'",
+		"start": "cross-env NODE_ENV=development concurrently 'npm:start-*'",
+		"zip-dev": "wp-scripts plugin-zip",
+		"zip-prod": "composer install --no-dev; npm run build; wp-scripts plugin-zip; composer install",
+		"dist": "npm run zip-prod; rm -rf dist; mkdir dist; mv field-press.zip dist; cd dist; unzip -q field-press.zip; rm field-press.zip;",
+		"format-js": "wp-scripts format 'js/**/*' 'package.json' 'composer.json'",
+		"format-php": "./vendor/bin/phpcbf .",
+		"format-scss": "wp-scripts lint-style 'scss/**/*' --fix",
+		"format": "concurrently 'npm:format-*'",
+		"test-phpunit": "./vendor/bin/phpunit --configuration ./phpunit.xml",
+		"prepare": "husky install; husky add .husky/pre-commit ./node_modules/.bin/lint-staged"
+	},
+	"lint-staged": {
+		"*.{js,jsx,json,ts,tsx,yml,yaml}": [
+			"wp-scripts format"
+		],
+		"*.php": [
+			"./vendor/bin/phpcbf"
+		],
+		"*.scss": [
+			"wp-scripts lint-style --fix"
+		]
+	},
+	"files": [
+		"*.php",
+		"*.css",
+		"*.png",
+		"assets/**/*",
+		"build/**/*",
+		"src/**/*",
+		"vendor/**/*",
+		"woocommerce/**/*",
+		"templates/**/*",
+		"template-parts/**/*"
+	],
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@wordpress/dom-ready": "3.32.0"
+	},
+	"devDependencies": {
+		"cross-env": "7.0.3",
+		"@tsconfig/recommended": "1.0.2",
+		"@wordpress/scripts": "26.3.0",
+		"sass": "1.62.1",
+		"typescript": "5.0.4",
+		"concurrently": "8.0.1",
+		"husky": "8.0.3",
+		"@ribarich/lint-staged": "1.0.0"
+	}
+}

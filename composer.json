@@ -1,0 +1,29 @@
+{
+	"name": "crosslink/field-press",
+	"authors": [],
+	"autoload": {
+		"psr-4": {
+			"FieldPress\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"FieldPress\\Tests\\": "tests/"
+		}
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/crosslink-ch/wp-utilitatem"
+		}
+	],
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.7",
+		"wp-coding-standards/wpcs": "^2.3",
+		"wp-phpunit/wp-phpunit": "^6.2",
+		"yoast/phpunit-polyfills": "^1.0"
+	},
+	"require": {
+		"crosslink-ch/wp-utilitatem": "^0.3.4"
+	}
+}
