@@ -4,7 +4,7 @@
  * Description: Cross-Link project
  * Requires at least: 6.1
  * Requires PHP: 8.1
- * Version: 1.0.1
+ * Version: 1.2.0
  * Author: Cross-Link
  * Text Domain: field-press
  */
