@@ -13,7 +13,18 @@ define( 'FIELDPRESS_PLUGIN_FILE', __FILE__ );
 
 require 'vendor/autoload.php';
 
+// Get the object to interact with FieldPress
+function fieldpress() {
+	return field_press_init();
+}
+
 function field_press_init() {
+	static $wputm;
+
+	if ( ! empty( $wputm ) ) {
+		return $wputm;
+	}
+
 	$wputm = new \WpUtm\Main(
 		array(
 			'definitions' => array(
@@ -27,6 +38,8 @@ function field_press_init() {
 	);
 
 	$wputm->get( \FieldPress\Main::class )->init();
+
+	return $wputm;
 }
 
 field_press_init();
